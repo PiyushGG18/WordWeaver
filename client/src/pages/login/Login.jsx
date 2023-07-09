@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
@@ -8,9 +8,11 @@ function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
+  const [error,setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", {
@@ -19,6 +21,7 @@ function Login() {
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {
+      setError(true);
       dispatch({ type: "LOGIN_FAILURE"});
     }
   };
@@ -44,6 +47,9 @@ function Login() {
         <button className="loginButton" type="submit" disabled={isFetching}>
           Login
         </button>
+        {error && (
+        <span style={{ color: "white", marginTop: "10px", textAlign:"center" }}>Wrong Credentials</span>
+      )}
       </form>
       <button className="loginRegisterButton">
         <Link className="link" to="/register">

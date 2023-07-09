@@ -8,8 +8,9 @@
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://img.freepik.com/premium-vector/background-desktop-wallpaper-phone-screen-image-game-app-modern-cover-backdrop-pattern-texture_101884-2262.jpg");
+    url("https://img.freepik.com/premium-vector/network-connection-background-abstract-style_23-2148875738.jpg");
   background-size: cover;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .loginTitle {
